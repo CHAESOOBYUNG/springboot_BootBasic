@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h3>block문 link문</h3>
+	<!-- 타임리프 블럭은 별도의 태그를 쓰지 않고, 처리하는 방법입니다 -->
+	<ul>
+		<th:block th:each="vo:${list}">
+			<li>[[${vo}]]</li>
+		</th:block>
+	</ul>
+
+
+	<hr>
+	<h3>타임리프 a태그로 값 넘기기</h3>
+	<ul>
+		<th:block th:each="vo : ${list}">
+		<li><a href="@{/view/경로...}">[[${vo.first}]]</a></li>
+		</th:block>
+	</ul>
+	
+	
+	<hr>
+	<h3>타임리프 a태그로 값 넘기기 - 경로(키=값, 키=값)</h3>
+	<ul>
+		<th:block th:each="vo : ${list}">
+		<!-- 안됨 -->
+		<!-- <li><a href="@{/view/경로?a=${vo.a}">[[${vo.first}]]</a></li>  -->
+		
+		<li><a th:href="@{/view/result(a=${vo.a}, first=${vo.first} ) }">[[${vo.first}]]</a></li>
+		
+		<!-- <li><a href="@{/view/result02/key }">[[${vo.first}]]</a></li>  -->
+		<li><a th:href="@{/view/result02/{key}(key=${vo.a}) }">[[${vo.first}]]</a></li>
+		
+		</th:block>
+	</ul>
+
+</body>
+</html>

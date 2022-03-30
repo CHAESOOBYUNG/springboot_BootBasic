@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<h3>이 화면에 진입할 때 SimpleVO를 이용하여 화면처리를 합니다.</h3>
+	<p>
+		회원정보확인 링크에는 quiz_result01?키=값 형태로
+		회원번호, 이름(성 + 이름)을 넘겨주세요
+		quiz01_reqult에서는 넘어온 값을 출력해주세요
+	</p>
+		
+	
+	<div>
+		회원번호: [[${vo.a}]]
+		이름: [[${vo.last + vo.first}]]
+		가입일: [[${ #temporals.format(vo.regdate, 'yyyyMMdd')}]]
+		<br>
+		<a th:href="@{/view/quiz01_result(a=${vo.a}, name=${vo.last + vo.first} ) }">회원정보확인</a>
+	</div>
+	
+	
+	
+	
+	
+</body>
+</html>

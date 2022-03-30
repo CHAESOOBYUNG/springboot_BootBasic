@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<!-- body를 조각내고 함수 선언 -->
+<body th:fragment="함수(aaa, bbb )">
+
+	<h3>타임리프 템플릿으로 사용하기</h3>
+
+	<header>
+		<h3>헤더에 대한 내용......</h3>
+	</header>
+	
+	<!-- 위에 선언된 aaa매개변수를 사용 가능. -->
+	<section>
+		<th:block th:replace="${aaa}"></th:block>
+	</section>
+	
+	<section>
+		<th:block th:replace="${bbb}"></th:block>
+	</section>
+	
+	<footer>
+		<h3>푸터에 대한 내용......</h3>
+	</footer>
+
+</body>
+</html>

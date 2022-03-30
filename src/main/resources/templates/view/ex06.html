@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h3>타임리프 include, replace</h3>
+	<!-- ~{경로 :: fragment 이름 } -->
+	<div th:replace="~{/include/layout01 :: part1 }"></div>
+	<th:block th:replace="~{/include/layout01 :: part2 }"></th:block>
+	
+	<!--  ::을 생략하면 파일전체를 가지고 옵니다 -->
+	<hr>
+	<th:block th:replace="~{/include/layout02}">
+	
+	
+</body>
+</html>

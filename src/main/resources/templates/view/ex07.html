@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- 
+	컨텐츠를 전달할 요소를 css의 ~{:: 선택자} 형식으로 사용합니다.
+	layout03의 템플릿으로 "선택자" 부분을 전달하게 됩니다.
+	id는 #, class . 으로 선택합니다.
+ -->
+
+<th:block th:replace="~{/include/layout03 :: 함수( ~{:: #first}, ~{:: .second} ) }">
+	
+	<div id="first">
+		first부분
+	</div>
+	
+	<div class="second">
+		second부분..
+	</div>
+	
+	<h3>이부분은 화면에 나타날까요?(나타나지 않습니다)</h3>
+	
+</th:block>
+
+</html>

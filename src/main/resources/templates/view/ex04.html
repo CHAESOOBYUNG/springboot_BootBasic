@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h3>타임리프에서 inline속성</h3>
+	
+	[[${vo}]]<br>
+	[[${arr}]]<br>
+	[[${name}]]<br>
+	
+	
+	<!-- 컨트롤러에서 넘어온 데이터를 JSON형식으로 처리 -->
+	<script th:inline="javascript">
+	
+		var aa = '[[${vo}]]';
+		var arr = '[[${arr}]]';
+		var name = '[[${name}]]';
+		
+		console.log( JSON.parse(aa) );
+		console.log( JSON.parse(arr) );
+		console.log( JSON.parse(name) );
+		
+	</script>
+	
+</body>
+</html>

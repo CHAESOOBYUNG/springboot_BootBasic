@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><!-- 타임리프문법 선언 -->
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h3>타임리프 변수와 표현방법</h3>
+	
+	
+	<h3 th:text="${'가나다'}"></h3>
+	<h3>[[${'가나다'}]]</h3>
+	
+	
+	<h3 th:text="${1 == 1}"></h3>
+	<h3>[[${1 eq 3}]]</h3>
+	
+	<h3>[[${1 eq 3 and true}]]</h3>
+	
+	<h3>[[${'hello' + 'world' }]]</h3>
+	
+	<h3>[[${4.14 + 3}]]</h3>
+	
+	<hr>
+	<h3>변수의 선언 th:with</h3>
+	<div th:with="a = 10">
+		[[${a}]]
+	</div>
+	
+	<h3>if~else(조건을 동일하게 적용)</h3>
+	<div th:with = "a = 10">
+		<span th:if="${a != 10}">if문이 실행됨</span>
+		<span th:unless="${a != 10}">else문이 실행됨</span>
+	</div>
+	
+	<h3>switch ~ case</h3>
+	<div th:with= "a = 10" th:switch="${a}">
+		<span th:case="10">10입니다</span>
+		<span th:case="20">20입니다</span>
+		<span th:case="30">30입니다</span>
+	</div>
+	
+	<h3>삼항연산자</h3>
+	<div th:with="a = 10">
+		[[${a >= 10 ? '10이상' : '10미만'}]]
+	</div>
+	
+	
+
+</body>
+</html>

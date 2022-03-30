@@ -1,0 +1,6 @@
+# spring 데이터베이스 생성
+create database spring default character set utf8;
+# 사용자 계정 생성
+create user 'spring' identified by 'spring';
+# 권한부여
+grant all privileges on spring.* to 'spring';

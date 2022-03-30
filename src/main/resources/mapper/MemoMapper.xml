@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.simple.basic.memo.MemoMapper">
+	
+	<select id="getTime" resultType="string">
+	 	<!-- select sysdate from dual -->	
+	 	select now()
+	</select>
+	
+	<insert id="memoInsert">
+		insert into MEMO(memo,phone,pw,secret) 
+		values(#{memo}, #{phone}, #{pw}, #{secret})
+	</insert>
+	
+	<!-- mybatis앨리어스로 클래스 이름으로 처리가 가능 -->
+	<select id="getList" resultType="MemoVO">
+	 	select * from MEMO order by mno desc
+	</select>
+
+</mapper>

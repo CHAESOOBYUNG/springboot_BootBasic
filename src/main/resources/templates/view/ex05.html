@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<h3>타임리프 유틸리티 함수(검색)</h3>
+	
+	<!-- LocalDateTime을 변경할 때 사용( java8Time라이브러리 필요) -->
+	<th:block th:each="vo: ${list}">
+		<div>[[${vo.regdate}]]</div>
+		<div>[[${#temporals.format(vo.regdate, 'yyyy년MM월dd일') }]]</div>
+	</th:block>
+	
+	<hr>
+	<!-- 숫자 형식변환 -->
+	<th:block th:each="vo : ${list}">
+		<div>[[${vo.a}]]</div>
+		<div>[[${#numbers.formatInteger(vo.a, 5)}]]</div>
+	</th:block>
+	
+	<hr>	
+	빈리스트 여부확인: [[${#lists.isEmpty(list) }]]
+	리스트 여부확인: [[${#lists.size(list) }]]
+	
+	<div th:if="${ #lists.size(list) != 0 }">
+		리스트가 비어있지 않음
+	</div>
+	
+</body>
+</html>
