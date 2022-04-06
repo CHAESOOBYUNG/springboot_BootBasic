@@ -4,3 +4,5 @@ create database spring default character set utf8;
 create user 'spring' identified by 'spring';
 # 권한부여
 grant all privileges on spring.* to 'spring';
+
+Yet Another REST Client
