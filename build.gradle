@@ -42,6 +42,9 @@ dependencies {
 
 	//마이바티스
 	implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.2.0'	
+
+	//REST API xml바인딩
+	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.11.2'
 }
 
 tasks.named('test') {

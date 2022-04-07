@@ -7,6 +7,7 @@ import java.util.HashMap;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -144,5 +145,49 @@ public class RestBasicController {
 		
 		return res;
 	}
+		//////////////////////////////////////////////
+		//jquery 학습 후 reatAPI확인
 	
+		//produce - json형식으로 보낸다.
+		//@CrossOrigin("*")
+		//@CrossOrigin("http://127.0.0.1:5501") //post방식은 ip:port가 동일해야 요청을 허용하는데, 서버가 다르다면 특정서버의 요청을 허용해야 요청처리를 받을 수 있다.
+		//@PostMapping(value = "/ajaxTest01", produces = "application/json")
+		//public ArrayList<RestVO> ajaxTest01(@RequestBody RestVO vo) {
+		//			
+		//		System.out.println(vo.toString());
+		//			
+		//		ArrayList<RestVO> list = new ArrayList<>();
+		//		for(int i = 1; i <= 10; i++) {
+		//		RestVO t = RestVO.builder()
+		//					     .name("홍길동" + i)
+		//					     .id("aa123" + i)
+		//					     .num(i)
+		//					     .build();
+		//				
+		//				list.add(t);
+		//			}
+		//			
+		//			return list;
+		//		}
+	
+	//xml형식으로 변환 - jackson-xml라이브러리
+	@CrossOrigin("http://127.0.0.1:5501") //post방식은 ip:port가 동일해야 요청을 허용하는데, 서버가 다르다면 특정서버의 요청을 허용해야 요청처리를 받을 수 있다.
+	@PostMapping(value = "/ajaxTest01", produces = "application/xml")
+	public ArrayList<RestVO> ajaxTest01(@RequestBody RestVO vo) {
+		
+		System.out.println(vo.toString());
+		
+		ArrayList<RestVO> list = new ArrayList<>();
+		for(int i = 1; i <= 10; i++) {
+		 RestVO t = RestVO.builder()
+				   .name("홍길동" + i)
+				   .id("aa123" + i)
+				   .num(i)
+				   .build();
+			
+			list.add(t);
+		}
+		
+		return list;
+	}
 }

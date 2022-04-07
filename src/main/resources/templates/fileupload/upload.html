@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- enctype을 multipart/form-data형식으로 반드시 적습니다 -->
+	<h3>단일 파일 업로드</h3>
+	<form action="upload_ok" method="post" enctype="multipart/form-data">
+	
+		파일선택:<input type="file" name="file"><br>
+		<input type="submit" value="submit">
+	
+	</form>
+	
+	<h3>복수 파일업로드</h3>
+	<form action="upload_ok2" method="post" enctype="multipart/form-data">
+	
+		파일선택:<input type="file" name="file"><br>
+		파일선택:<input type="file" name="file"><br>
+		파일선택:<input type="file" name="file"><br>
+		<input type="submit" value="submit">
+	
+	</form>
+	
+	<h3>비동기 업로드</h3>
+</body>
+</html>
