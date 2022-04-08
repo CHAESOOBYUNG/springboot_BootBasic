@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -75,6 +76,7 @@ public class UploadController {
 			System.out.println("파일처리중 에러");
 		}
 		
+		//데이터베이스 저장할 값
 //		System.out.println(originname);
 		System.out.println(filename);
 //		System.out.println(size);
@@ -116,6 +118,7 @@ public class UploadController {
 				System.out.println("파일처리중 에러");
 			}
 			
+			//데이터베이스 저장할 값
 //			System.out.println(originname);
 			System.out.println(filename);
 //			System.out.println(size);
@@ -126,6 +129,47 @@ public class UploadController {
 		}
 		
 		return "fileupload/upload_ok"; //ok페이지로
+	}
+	
+	//비동기 업로드
+	//화면에서 json형식으로 넘어오지 않기 때문에 @RequestBody가 필요없음
+	//일반 컨트롤러에서 rest방식을 사용하려면 @ResponseBody를 선언합니다.
+	@ResponseBody
+	@PostMapping("/upload_ok3")
+	public String upload_ok3(@RequestParam("file") MultipartFile file,
+							 @RequestParam("writer") String writer) {
+		
+		String originname = file.getOriginalFilename(); //실제파일명
+		//브라우저별로 파일에 전체경로가 입력되는 경우가 있음.
+		String filename = originname.substring( originname.lastIndexOf("\\") + 1 ); // \\기준으로 파일명만 추출
+		//파일크기
+		Long size = file.getSize();
+		//날짜별로 폴더 생성
+		String filepath = makeFolder(); //년월일 형식의 폴더명
+		//랜덤값을 생서(파일명 중복 처리)
+		String uuids = UUID.randomUUID().toString(); //16진수 랜덤값
+		//최종 업로드 경로
+		String savename = uploadPath + "\\" + filepath + "\\" + uuids + "_" + filename;
+		
+		try {
+			
+			File f = new File(savename);
+			file.transferTo(f);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("파일처리중 에러");
+		}
+		
+		//데이터베이스 저장할 값
+//		System.out.println(originname);
+		System.out.println(filename);
+//		System.out.println(size);
+		System.out.println(uuids);
+		System.out.println(filepath);		
+//		System.out.println(savename);
+		
+		return "success";
 	}
 	
 }

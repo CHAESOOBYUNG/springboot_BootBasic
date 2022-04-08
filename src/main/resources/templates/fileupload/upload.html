@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+	<!-- 제이쿼리참조 -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <body>
 
 	<!-- enctype을 multipart/form-data형식으로 반드시 적습니다 -->
@@ -26,5 +30,58 @@
 	</form>
 	
 	<h3>비동기 업로드</h3>
+	
+	<div>
+		<input type="text" name="writer"><br>
+		<input type="file" name="file_a"><br>
+	</div>
+	<button type="button" id="fileBtn">비동기 업로드</button>
+	
+	<script th:inline="javascript">
+		//비동기 처리
+		$("#fileBtn").click(function(){
+			
+			//확장자 체크
+			var file = $("input[name='file_a']").val();
+			file = file.substr( file.lastIndexOf(".") + 1 );
+			
+			if(file != "png" && file != "jpg" && file != "bmp") {
+				alert("이미지만 적용가능합니다");
+				return;
+			}
+			
+			var a = $("input[name='file_a']");
+			var b = $("input[name='writer']").val(); //writer태그의 값
+			
+			//console.log(a);
+			//console.log(a[0]); //태그
+			//console.log(a[0].files ); //file정보를 보는 키 값
+			//console.log(a[0].files[0] ); //폼에 담아줄 파일 데이터
+			
+			//폼 객체(키, 값)
+			var form = new FormData();
+			form.append("file", a[0].files[0]); //file이름으로 파일데이터를 저장
+			form.append("writer", b); //writer이름으로 writer값 저장
+			
+			$.ajax({
+				url : "upload_ok3",
+				processData: false, //폼 값이 키=값의 형태로 전달된는 것을 막음 
+				contentType: false, //false라고 처리하면 multipart/form-data로 선언됨
+				type : "post",
+				data : form,
+				success : function(result) {
+					console.log(result);
+					//.......js제어 화면작업처리.......
+				},
+				error : function() {
+					
+				}
+				
+			})
+			
+		});
+		
+	</script>
+	
 </body>
 </html>
