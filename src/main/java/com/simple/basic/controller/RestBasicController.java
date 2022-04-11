@@ -190,4 +190,24 @@ public class RestBasicController {
 		
 		return list;
 	}
+	
+	@GetMapping("/test01/{key}/{code}") 
+	public HashMap<String, Object> test(@PathVariable("key") String key,
+										@PathVariable("code") String code) {
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("aaa", "사원정보"); //....
+		
+		return map;
+	}
+	
+	//
+	@PostMapping(value="/test02", consumes = "application/json", produces = "application/json")
+	public RestVO test02(@RequestBody RestVO vo) {
+		
+		System.out.println(vo.toString());
+		
+		return new RestVO(1, "test02", "test02");
+	}
+	
 }

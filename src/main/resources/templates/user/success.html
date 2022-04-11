@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h3>로그인 성공페이지</h3>
+
+	타임리프에서 세션값 참조<br>
+	[[${session.userVO}]]<br>
+	[[${session.userVO.id}]]
+	
+	<br>
+	<a href="mypage">마이페이지이동</a>
+
+</body>
+</html>
